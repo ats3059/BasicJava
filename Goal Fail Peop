@@ -1,0 +1,49 @@
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class TEST2 {
+
+	public static void main(String[] args) {
+		String[] participant = {"marina", "josipa", "nikola", "vinko", "filipa"};
+		String[] completion = {"josipa", "filipa", "marina", "nikola"};
+		String answer = "";
+		Map<String,Integer> map = new HashMap<>();
+		Map<String,Integer> map2 = new HashMap<>();
+
+
+		for(int i = 0; i < participant.length; i++ ) {
+			int j = 0;
+			int comp = 0;
+
+			if(map.get(participant[i]) != null) {
+				map.put(participant[i], map.get(participant[i])+1);
+			}else {
+				map.put(participant[i], ++j);
+			}
+
+			if(i <= participant.length-2) {
+				if(map2.get(completion[i]) != null) {
+					map2.put(completion[i], map2.get(completion[i])+1);
+				}else {
+					map2.put(completion[i], ++comp);
+				}
+			}
+		}
+		for(int i = 0; i < participant.length;i++) {
+				if(!map2.containsKey(participant[i])) {
+					answer = participant[i];
+				}
+				if(i <= participant.length-2){
+					if(map.get(completion[i]) > map2.get(completion[i])) {
+						answer = completion[i];
+					}
+				}
+		}
+
+		System.out.println(answer);
+
+
+	}
+
+}
