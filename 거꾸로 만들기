@@ -1,0 +1,17 @@
+ public List<Integer> solution(long n) {
+        String str = String.valueOf(n);
+		char[] chArr = str.toCharArray();
+
+		List<Integer> answer = new ArrayList<>();
+		for (int i = 0; i < str.length(); i++) {
+			answer.add((int) str.charAt(i)- '0');
+		}
+        int size = answer.size();
+		for(int i=0, mid=size>>1, j=size-1; i<mid; i++, j--){
+			int tmp = answer.get(i);
+			answer.set(i, answer.get(j));
+			answer.set(j, tmp);
+		}
+        
+        return answer;
+    }
