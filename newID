@@ -1,0 +1,110 @@
+class Solution {
+    public String solution(String new_id) {
+        Programmers programmers = Programmers.builder()
+                .setAnswer(new_id)
+                .first()
+                .second()
+                .third()
+                .forth()
+                .fifth()
+                .sixth()
+                .seventh()
+                .build();
+        return programmers.getAnswer();
+    }
+}
+
+class Programmers {
+    private String answer;
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    private Programmers(Builder builder) {
+        answer = builder.answer;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    static class Builder {
+        private String answer;
+        private StringBuilder sb;
+
+
+        public Builder setAnswer(String answer) {
+            this.answer = answer;
+            return this;
+        }
+
+        public Builder first() {
+            answer = answer.toLowerCase();
+            return this;
+        }
+
+        public Builder second() {
+            answer = answer.replaceAll("[^a-z 0-9-_.]", "");
+            return this;
+        }
+
+        public Builder third() {
+            this.sb = new StringBuilder(answer);
+
+            int count = sb.length();
+
+            if (sb.length() > 2) {
+                do {
+                    if (sb.charAt(count - 1) == '.' && sb.charAt(count - 2) == '.') {
+                        sb.deleteCharAt(count - 1);
+                    }
+                    --count;
+                } while (count >= 2);
+            }
+
+            return this;
+        }
+
+        public Builder forth() {
+            if (sb.charAt(0) == '.') sb.deleteCharAt(0);
+            return this;
+        }
+
+        public Builder fifth() {
+            if (sb.length() > 1 && sb.charAt(sb.length() - 1) == '.') sb.deleteCharAt(sb.length() - 1);
+            return this;
+        }
+
+        public Builder sixth() {
+            if (sb.length() >= 16) {
+                int length = 0;
+                do {
+                    sb.deleteCharAt(sb.length() - 1);
+                    length = sb.length();
+                    
+                } while (sb.length() >= 16);
+                if (sb.charAt(sb.length() - 1) == '.') {
+                    sb.deleteCharAt(sb.length() - 1);
+                }
+            }
+            return this;
+        }
+
+        public Builder seventh() {
+            if (sb.length() <= 2) {
+                while (sb.length() < 3) {
+                    sb.append(sb.charAt(sb.length() - 1));
+                }
+            }
+            answer = sb.toString();
+            return this;
+        }
+
+        public Programmers build() {
+            return new Programmers(this);
+        }
+
+    }
+}
