@@ -1,9 +1,10 @@
+package Programmers;
+
 public class TargetNumber {
 
     int[] numbers;
     int target;
     int answer = 0;
-    int[] temp;
     public static void main(String[] args) {
         TargetNumber tn = new TargetNumber();
         System.out.println(tn.solution(new int[]{4,1,2,1},2));
@@ -12,7 +13,6 @@ public class TargetNumber {
     int solution(int[] numbers , int target){
         this.numbers = numbers;
         this.target = target;
-        temp = new int[10000];
         dfs(0,0);
         return answer;
     }
@@ -22,8 +22,6 @@ public class TargetNumber {
             if(val == target) answer++;
             return;
         }else{
-            temp[val] = val;
-            if(temp[val + numbers[n+1]] > 0)
             dfs(n+1,val + numbers[n]);
             dfs(n+1,val - numbers[n]);
         }
