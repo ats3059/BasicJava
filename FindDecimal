@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 class Solution {
-// ... 코드가 너무 답이 없다.. 정답으로 나오기는 했는데 공부를 더 열심히..
+// ... 코드가 답이 없다.. 정답으로 나오기는 했는데 공부를 더 열심히..
    int max;
     int len;
     int[] tempArr;
