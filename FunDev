@@ -1,0 +1,39 @@
+import java.util.*;
+class Solution {
+      public List<Integer> solution(int[] progresses, int[] speeds) {
+      
+        List<Integer> answer = new ArrayList<>();
+        int inCnt = 0;
+        int outCnt = 0;
+        int idx = 0;
+          
+        Map<Integer,Integer> map = new LinkedHashMap<>();
+        
+        for(int i = 0; i < progresses.length;i++){
+            if(progresses[i] + speeds[i] >= 100 || progresses[i] + (speeds[i] * inCnt) >= 100){
+                outCnt++;
+                map.put(idx,outCnt);
+                continue;
+            }else{
+                outCnt = 0;
+                progresses[i] = progresses[i] + (speeds[i] * inCnt);
+                while(progresses[i] < 100){
+                    progresses[i] += speeds[i];
+                    inCnt++;
+                }
+                ++idx;
+                outCnt++;
+                map.put(idx,outCnt);
+            }
+
+        }
+      
+        idx = 0;
+          
+        for(Integer x : map.keySet()){
+            answer.add(map.get(x));
+        }
+
+        return answer;
+    }
+}
