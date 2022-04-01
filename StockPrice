@@ -1,0 +1,33 @@
+import java.util.*;
+class Solution {
+    public List<Integer> solution(int[] prices) {
+        
+        List<Integer> list = new ArrayList<>();
+        Queue<Integer> q = new LinkedList<>();
+        for(int i : prices){
+            q.offer(i);
+        }
+        int idx = 1;
+        while(!q.isEmpty()){
+            int x = q.poll();
+            list.add(keepMoney(x,prices,idx));
+            idx++;
+        }
+        
+        return list;
+    }
+    
+    int keepMoney(int x,int[] prices,int idx){
+        if(idx == prices.length) return 0;
+        int count = 0;
+        for(int i = idx ; i < prices.length; i++){
+            if(prices[i] >= x){
+                count++;
+            }else{
+                return count+1;
+            }
+        }
+        return count;
+    }
+    
+}
