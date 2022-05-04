@@ -11,8 +11,6 @@ class Solution {
     public int solution(int[][] maps) {
         n = maps.length-1;
         m = maps[0].length-1;
-        System.out.println(n);
-        System.out.println(m);
         dirArr = new int[][]{
                 {1, 0},
                 {0, 1},
@@ -25,7 +23,7 @@ class Solution {
         return answer;
     }
     
-    public int shortDis(int x, int y, int[][] maps) {
+    public void shortDis(int x, int y, int[][] maps) {
         queue.offer(new Direction(x, y));
 
         while (!queue.isEmpty()) {
@@ -37,7 +35,8 @@ class Solution {
                     int ny = dir.y + dirArr[i][1];
                     if(nx > n || ny > m) continue;
                     if(nx == n && ny == m){
-                        return answer+=1;
+                        answer+=1;
+                        return;
                     }
                     if((nx >= 0 && ny >= 0) && maps[nx][ny] == 1){
                         maps[nx][ny] = 0;
@@ -48,7 +47,8 @@ class Solution {
             answer++;
         }
 
-        return answer = -1;
+        answer = -1;
+        return;
     }
 
     static class Direction {
